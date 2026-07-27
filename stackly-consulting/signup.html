@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — STACKLY Business Strategy Consulting</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-brand">
+    <div class="hero-bg" style="background-image:url('assets/img/hero-auth.webp')"></div>
+    <a href="index.html" class="logo"><span class="mark">◆</span>Stack<span class="tail">ly</span></a>
+    <h2>Open your strategy workspace.</h2>
+    <p>One account for engagement tracking, briefings, bookings, and your firm's document vault.</p>
+    <ul>
+      <li>Complimentary first strategy call</li>
+      <li>The Monday Briefing, delivered free</li>
+      <li>Priority scoping for new engagements</li>
+    </ul>
+  </div>
+
+  <div class="auth-form-side">
+    <form id="signupForm" class="auth-card" novalidate>
+      <a href="index.html" class="back-link">← Back to Home</a>
+      <h1>Create Account</h1>
+      <p>Pick your role and fill in the details — under a minute.</p>
+
+      <div class="auth-switch">
+        <a href="login.html">Login</a>
+        <button type="button" class="on">Sign Up</button>
+      </div>
+
+      <div class="role-pick">
+        <input type="radio" name="role" value="client" id="sRoleClient" checked>
+        <label for="sRoleClient"><span class="r-ic">💼</span>Client<small>Track your engagement</small></label>
+        <input type="radio" name="role" value="admin" id="sRoleAdmin">
+        <label for="sRoleAdmin"><span class="r-ic">🧑‍💼</span>Admin<small>Manage the firm</small></label>
+      </div>
+      <span class="field-msg role-msg"></span>
+
+      <div class="form-field">
+        <label for="sName">Full Name</label>
+        <input id="sName" type="text" placeholder="e.g. Jordan Blake" data-validate="name" autocomplete="name">
+        <span class="field-msg"></span>
+      </div>
+      <div class="form-field">
+        <label for="sEmail">Work Email</label>
+        <input id="sEmail" type="email" placeholder="you@company.com" data-validate="email" autocomplete="email">
+        <span class="field-msg"></span>
+      </div>
+      <div class="form-field">
+        <label for="sPhone">Phone Number</label>
+        <input id="sPhone" type="tel" placeholder="e.g. 9876543210" data-validate="phone" autocomplete="tel" inputmode="numeric" maxlength="10">
+        <span class="field-msg"></span>
+      </div>
+      <div class="form-field">
+        <label for="sPass">Password</label>
+        <div class="pass-wrap">
+          <input id="sPass" type="password" placeholder="Min 8 chars · Aa1@" data-validate="password" autocomplete="new-password">
+          <button type="button" class="toggle-pass" aria-label="Show password">👁</button>
+        </div>
+        <span class="field-msg"></span>
+      </div>
+      <div class="form-field">
+        <label for="sPass2">Confirm Password</label>
+        <div class="pass-wrap">
+          <input id="sPass2" type="password" placeholder="Repeat your password" data-validate="confirm" data-match="#sPass" autocomplete="new-password">
+          <button type="button" class="toggle-pass" aria-label="Show password">👁</button>
+        </div>
+        <span class="field-msg"></span>
+      </div>
+
+      <div class="terms-field">
+        <label class="terms-check">
+          <input type="checkbox" id="sTerms" data-require-check>
+          <span class="tick-box" aria-hidden="true">✓</span>
+          <span class="terms-text">I agree to the <a href="404.html">Terms of Engagement</a> and <a href="404.html">Privacy Policy</a>.</span>
+        </label>
+        <span class="field-msg terms-msg"></span>
+      </div>
+
+      <button type="submit" class="btn btn-grad">Create My Workspace <span class="arr">→</span></button>
+      <span class="form-status nl-msg" role="status" aria-live="polite"></span>
+      <div class="auth-foot">Already a member? <a href="login.html">Log in instead</a></div>
+    </form>
+  </div>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — STACKLY</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dash-body">
+<aside class="dash-side">
+  <button class="side-close" aria-label="Close menu">✕</button>
+  <a href="admin-dashboard.html" class="logo"><span class="mark">◆</span>Stack<span class="tail">ly</span></a>
+
+  <div class="side-id">
+    <span class="side-avatar">MH</span>
+    <div class="side-id-text">
+      <small>Welcome back</small>
+      <b>Marcus Hale</b>
+      <span class="side-role is-admin">Admin workspace</span>
+    </div>
+  </div>
+  <span class="side-mail" title="marcus.hale@stackly.consulting">marcus.hale@stackly.consulting</span>
+
+  <nav class="dash-nav">
+    <a href="#overview" data-view="overview" class="active">📊 Overview</a>
+    <a href="#engagements" data-view="engagements">📁 Engagements</a>
+    <a href="#clients" data-view="clients">👥 Clients</a>
+    <a href="#consultants" data-view="consultants">🧑‍💼 Consultants</a>
+    <a href="#revenue" data-view="revenue">💰 Revenue</a>
+    <a href="#proposals" data-view="proposals">📄 Proposals</a>
+    <a href="#settings" data-view="settings">⚙️ Settings</a>
+  </nav>
+
+  <div class="side-bottom">
+    <nav class="dash-nav">
+      <a href="#support" data-view="support">🛟 Support</a>
+      <a href="login.html" class="logout">↩ Logout</a>
+    </nav>
+  </div>
+</aside>
+
+<main class="dash-main">
+  <div class="dash-topbar">
+    <div class="dash-topbar-left">
+      <button class="icon-btn dash-menu-toggle" aria-label="Toggle sidebar">☰</button>
+      <h1 data-title>Good morning, <span>Marcus</span> — firm overview</h1>
+    </div>
+    <div class="dash-user">
+      <button class="icon-btn" onclick="location.href='404dash.html'" aria-label="Notifications">🔔</button>
+      <button class="icon-btn" onclick="location.href='404dash.html'" aria-label="Search">🔍</button>
+      <span class="avatar">MH</span>
+    </div>
+  </div>
+
+  <!-- greeting block (mobile only) -->
+  <div class="dash-welcome">
+    <b>Good morning, Marcus</b>
+    <span>Firm overview · 18 active engagements</span>
+  </div>
+
+  <!-- ============ OVERVIEW ============ -->
+  <section class="dash-view" data-panel="overview">
+    <div class="stat-grid">
+      <div class="stat-card"><span class="s-ic bg-cobalt">📁</span><div><b><span data-count="18">0</span></b><span>Active engagements</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-violet">👥</span><div><b><span data-count="42">0</span></b><span>Client accounts</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-brass">💰</span><div><b>$<span data-count="4.6">0</span>M</b><span>Revenue — FY26 YTD</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-teal">🎯</span><div><b><span data-count="93">0</span>%</b><span>Milestones on schedule</span></div></div>
+    </div>
+
+    <div class="dash-cols">
+      <div class="dash-panel">
+        <h2>Active engagements <a href="404dash.html" class="btn btn-grad">+ New Engagement</a></h2>
+        <div class="table-scroll">
+        <table class="dash-table">
+          <thead><tr><th>Client</th><th>Practice</th><th>Partner</th><th>Phase</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Meridian Retail Group</td><td>Growth Strategy</td><td>M. Hale</td><td>Deploy</td><td><span class="pill ok">ON TRACK</span></td></tr>
+            <tr><td>Kite &amp; Co Fintech</td><td>Market Entry</td><td>I. Sato</td><td>Design</td><td><span class="pill info">IN REVIEW</span></td></tr>
+            <tr><td>Vela Energy</td><td>M&amp;A Advisory</td><td>T. Ferreira</td><td>Diagnose</td><td><span class="pill ok">ON TRACK</span></td></tr>
+            <tr><td>Arque Logistics</td><td>Digital</td><td>A. Diallo</td><td>Deploy</td><td><span class="pill warn">AT RISK</span></td></tr>
+            <tr><td>Orva Manufacturing</td><td>Operating Model</td><td>I. Sato</td><td>Compound</td><td><span class="pill ok">ON TRACK</span></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="dash-panel">
+        <h2>Revenue by practice</h2>
+        <div class="bar-row"><b>GROWTH</b><div class="bar-track"><div class="bar-fill bg-cobalt" data-w="86"></div></div><span>$1.4M</span></div>
+        <div class="bar-row"><b>M&amp;A</b><div class="bar-track"><div class="bar-fill bg-violet" data-w="72"></div></div><span>$1.1M</span></div>
+        <div class="bar-row"><b>OPS</b><div class="bar-track"><div class="bar-fill bg-brass" data-w="60"></div></div><span>$0.9M</span></div>
+        <div class="bar-row"><b>DIGITAL</b><div class="bar-track"><div class="bar-fill bg-teal" data-w="48"></div></div><span>$0.7M</span></div>
+        <div class="bar-row"><b>ENTRY</b><div class="bar-track"><div class="bar-fill bg-rose" data-w="34"></div></div><span>$0.5M</span></div>
+        <h2 style="margin-top:24px;">Pending approvals</h2>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-violet">📄</span><div><h3>Proposal — Helix Biotech</h3><p>Full engagement · awaiting partner sign-off</p></div></div>
+        <div class="info-card"><span class="i-ic bg-brass">🧾</span><div><h3>Invoice #FY26-114</h3><p>Outcome-linked tranche · Meridian</p></div></div>
+      </div>
+    </div>
+
+    <div class="dash-cols" style="grid-template-columns:1fr 1.5fr;">
+      <div class="dash-panel">
+        <h2>Consultant utilisation</h2>
+        <div class="bar-row"><b>M. HALE</b><div class="bar-track"><div class="bar-fill bg-cobalt" data-w="92"></div></div><span>92%</span></div>
+        <div class="bar-row"><b>I. SATO</b><div class="bar-track"><div class="bar-fill bg-violet" data-w="84"></div></div><span>84%</span></div>
+        <div class="bar-row"><b>T. FERREIRA</b><div class="bar-track"><div class="bar-fill bg-brass" data-w="76"></div></div><span>76%</span></div>
+        <div class="bar-row"><b>A. DIALLO</b><div class="bar-track"><div class="bar-fill bg-teal" data-w="88"></div></div><span>88%</span></div>
+      </div>
+      <div class="dash-panel">
+        <h2>This week <a href="404dash.html" class="btn btn-ghost" style="color:var(--forest);">Full calendar</a></h2>
+        <div class="table-scroll">
+        <table class="dash-table">
+          <thead><tr><th>Day</th><th>Session</th><th>Client</th><th>Lead</th></tr></thead>
+          <tbody>
+            <tr><td>Mon</td><td>Weekly value review</td><td>Meridian Retail</td><td>M. Hale</td></tr>
+            <tr><td>Tue</td><td>Diligence readout</td><td>Vela Energy</td><td>T. Ferreira</td></tr>
+            <tr><td>Wed</td><td>Pricing workshop</td><td>Kite &amp; Co</td><td>I. Sato</td></tr>
+            <tr><td>Fri</td><td>Steering committee</td><td>Arque Logistics</td><td>A. Diallo</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENGAGEMENTS ============ -->
+  <section class="dash-view" data-panel="engagements" hidden>
+    <div class="stat-grid">
+      <div class="stat-card"><span class="s-ic bg-cobalt">📁</span><div><b><span data-count="18">0</span></b><span>Active</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-teal">✅</span><div><b><span data-count="240">0</span></b><span>Delivered since 2014</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-brass">⚠️</span><div><b><span data-count="2">0</span></b><span>Flagged at risk</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-violet">📅</span><div><b><span data-count="11">0</span>mo</b><span>Median duration</span></div></div>
+    </div>
+    <div class="dash-panel">
+      <h2>Engagement register <a href="404dash.html" class="btn btn-grad">+ New Engagement</a></h2>
+      <div class="table-scroll">
+      <table class="dash-table">
+        <thead><tr><th>Ref</th><th>Client</th><th>Practice</th><th>Partner</th><th>Phase</th><th>Value</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>ENG-241</td><td>Meridian Retail Group</td><td>Growth Strategy</td><td>M. Hale</td><td>Deploy</td><td>$95k</td><td><span class="pill ok">ON TRACK</span></td></tr>
+          <tr><td>ENG-240</td><td>Kite &amp; Co Fintech</td><td>Market Entry</td><td>I. Sato</td><td>Design</td><td>$140k</td><td><span class="pill info">IN REVIEW</span></td></tr>
+          <tr><td>ENG-238</td><td>Vela Energy</td><td>M&amp;A Advisory</td><td>T. Ferreira</td><td>Diagnose</td><td>$310k</td><td><span class="pill ok">ON TRACK</span></td></tr>
+          <tr><td>ENG-236</td><td>Arque Logistics</td><td>Digital</td><td>A. Diallo</td><td>Deploy</td><td>$225k</td><td><span class="pill warn">AT RISK</span></td></tr>
+          <tr><td>ENG-233</td><td>Orva Manufacturing</td><td>Operating Model</td><td>I. Sato</td><td>Compound</td><td>$180k</td><td><span class="pill ok">ON TRACK</span></td></tr>
+          <tr><td>ENG-231</td><td>Helix Biotech</td><td>Turnaround</td><td>M. Hale</td><td>Design</td><td>$260k</td><td><span class="pill ok">ON TRACK</span></td></tr>
+          <tr><td>ENG-229</td><td>Northwind Capital</td><td>M&amp;A Advisory</td><td>T. Ferreira</td><td>Deploy</td><td>$420k</td><td><span class="pill info">IN REVIEW</span></td></tr>
+          <tr><td>ENG-226</td><td>Lumen Health</td><td>Market Entry</td><td>A. Diallo</td><td>Compound</td><td>$120k</td><td><span class="pill ok">ON TRACK</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLIENTS ============ -->
+  <section class="dash-view" data-panel="clients" hidden>
+    <div class="stat-grid">
+      <div class="stat-card"><span class="s-ic bg-violet">👥</span><div><b><span data-count="42">0</span></b><span>Client accounts</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-teal">🔁</span><div><b><span data-count="96">0</span>%</b><span>Re-engagement rate</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-cobalt">🏭</span><div><b><span data-count="18">0</span></b><span>Industries served</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-brass">⭐</span><div><b><span data-count="72">0</span></b><span>Net promoter score</span></div></div>
+    </div>
+    <div class="dash-panel">
+      <h2>Client accounts <a href="404dash.html" class="btn btn-grad">Add client</a></h2>
+      <div class="table-scroll">
+      <table class="dash-table">
+        <thead><tr><th>Client</th><th>Industry</th><th>Primary contact</th><th>Engagements</th><th>Lifetime value</th><th>Health</th></tr></thead>
+        <tbody>
+          <tr><td>Meridian Retail Group</td><td>Retail</td><td>Priya Raghavan</td><td>4</td><td>$610k</td><td><span class="pill ok">STRONG</span></td></tr>
+          <tr><td>Kite &amp; Co Fintech</td><td>Financial services</td><td>Daniel Okafor</td><td>2</td><td>$265k</td><td><span class="pill ok">STRONG</span></td></tr>
+          <tr><td>Orva Manufacturing</td><td>Manufacturing</td><td>Helena Voss</td><td>3</td><td>$480k</td><td><span class="pill ok">STRONG</span></td></tr>
+          <tr><td>Vela Energy</td><td>Energy</td><td>Tomas Ruiz</td><td>1</td><td>$310k</td><td><span class="pill info">NEW</span></td></tr>
+          <tr><td>Arque Logistics</td><td>Logistics</td><td>Sana Malik</td><td>2</td><td>$395k</td><td><span class="pill warn">WATCH</span></td></tr>
+          <tr><td>Helix Biotech</td><td>Life sciences</td><td>Nils Berger</td><td>1</td><td>$260k</td><td><span class="pill info">NEW</span></td></tr>
+          <tr><td>Northwind Capital</td><td>Private equity</td><td>Claire Bennett</td><td>5</td><td>$1.2M</td><td><span class="pill ok">STRONG</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONSULTANTS ============ -->
+  <section class="dash-view" data-panel="consultants" hidden>
+    <div class="dash-cols">
+      <div class="dash-panel">
+        <h2>Roster <a href="404dash.html" class="btn btn-grad">Add consultant</a></h2>
+        <div class="table-scroll">
+        <table class="dash-table">
+          <thead><tr><th>Name</th><th>Role</th><th>Practice</th><th>Engagements</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Marcus Hale</td><td>Managing Partner</td><td>Growth</td><td>5</td><td><span class="pill warn">AT CAPACITY</span></td></tr>
+            <tr><td>Ingrid Sato</td><td>Partner</td><td>Market Entry</td><td>4</td><td><span class="pill ok">AVAILABLE</span></td></tr>
+            <tr><td>Tomás Ferreira</td><td>Partner</td><td>M&amp;A</td><td>3</td><td><span class="pill ok">AVAILABLE</span></td></tr>
+            <tr><td>Amara Diallo</td><td>Principal</td><td>Digital</td><td>4</td><td><span class="pill warn">AT CAPACITY</span></td></tr>
+            <tr><td>Jonas Lindqvist</td><td>Engagement Manager</td><td>Operating Model</td><td>2</td><td><span class="pill ok">AVAILABLE</span></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="dash-panel">
+        <h2>Utilisation</h2>
+        <div class="bar-row"><b>M. HALE</b><div class="bar-track"><div class="bar-fill bg-cobalt" data-w="92"></div></div><span>92%</span></div>
+        <div class="bar-row"><b>I. SATO</b><div class="bar-track"><div class="bar-fill bg-violet" data-w="84"></div></div><span>84%</span></div>
+        <div class="bar-row"><b>T. FERREIRA</b><div class="bar-track"><div class="bar-fill bg-brass" data-w="76"></div></div><span>76%</span></div>
+        <div class="bar-row"><b>A. DIALLO</b><div class="bar-track"><div class="bar-fill bg-teal" data-w="88"></div></div><span>88%</span></div>
+        <div class="bar-row"><b>J. LINDQVIST</b><div class="bar-track"><div class="bar-fill bg-rose" data-w="61"></div></div><span>61%</span></div>
+        <h2 style="margin-top:24px;">Firm average</h2>
+        <div class="info-card"><span class="i-ic bg-cobalt">📊</span><div><h3>80% billable utilisation</h3><p>Target band is 72–85% — within range</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REVENUE ============ -->
+  <section class="dash-view" data-panel="revenue" hidden>
+    <div class="stat-grid">
+      <div class="stat-card"><span class="s-ic bg-brass">💰</span><div><b>$<span data-count="4.6">0</span>M</b><span>FY26 YTD</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-teal">📈</span><div><b>+<span data-count="22">0</span>%</b><span>vs FY25</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-cobalt">🎯</span><div><b>$<span data-count="1.4">0</span>M</b><span>Outcome-linked</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-violet">🧾</span><div><b>$<span data-count="680">0</span>k</b><span>Outstanding</span></div></div>
+    </div>
+    <div class="dash-cols">
+      <div class="dash-panel">
+        <h2>Revenue by quarter</h2>
+        <div class="bar-row"><b>Q1 FY26</b><div class="bar-track"><div class="bar-fill bg-cobalt" data-w="58"></div></div><span>$0.9M</span></div>
+        <div class="bar-row"><b>Q2 FY26</b><div class="bar-track"><div class="bar-fill bg-violet" data-w="72"></div></div><span>$1.1M</span></div>
+        <div class="bar-row"><b>Q3 FY26</b><div class="bar-track"><div class="bar-fill bg-brass" data-w="84"></div></div><span>$1.3M</span></div>
+        <div class="bar-row"><b>Q4 FY26</b><div class="bar-track"><div class="bar-fill bg-teal" data-w="88"></div></div><span>$1.3M</span></div>
+        <h2 style="margin-top:24px;">By practice</h2>
+        <div class="bar-row"><b>GROWTH</b><div class="bar-track"><div class="bar-fill bg-cobalt" data-w="86"></div></div><span>$1.4M</span></div>
+        <div class="bar-row"><b>M&amp;A</b><div class="bar-track"><div class="bar-fill bg-violet" data-w="72"></div></div><span>$1.1M</span></div>
+        <div class="bar-row"><b>OPS</b><div class="bar-track"><div class="bar-fill bg-brass" data-w="60"></div></div><span>$0.9M</span></div>
+        <div class="bar-row"><b>DIGITAL</b><div class="bar-track"><div class="bar-fill bg-teal" data-w="48"></div></div><span>$0.7M</span></div>
+        <div class="bar-row"><b>ENTRY</b><div class="bar-track"><div class="bar-fill bg-rose" data-w="34"></div></div><span>$0.5M</span></div>
+      </div>
+      <div class="dash-panel">
+        <h2>Top accounts <a href="404dash.html" class="btn btn-ghost" style="color:var(--forest);">Export</a></h2>
+        <div class="table-scroll">
+        <table class="dash-table">
+          <thead><tr><th>Client</th><th>FY26</th><th>Share</th></tr></thead>
+          <tbody>
+            <tr><td>Northwind Capital</td><td>$820k</td><td>18%</td></tr>
+            <tr><td>Vela Energy</td><td>$610k</td><td>13%</td></tr>
+            <tr><td>Arque Logistics</td><td>$540k</td><td>12%</td></tr>
+            <tr><td>Orva Manufacturing</td><td>$470k</td><td>10%</td></tr>
+            <tr><td>Meridian Retail Group</td><td>$430k</td><td>9%</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <h2 style="margin-top:24px;">Collections</h2>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-teal">✅</span><div><h3>$3.9M settled</h3><p>Average days to pay — 24</p></div></div>
+        <div class="info-card"><span class="i-ic bg-brass">⏳</span><div><h3>$680k outstanding</h3><p>$95k past due across 2 invoices</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROPOSALS ============ -->
+  <section class="dash-view" data-panel="proposals" hidden>
+    <div class="stat-grid">
+      <div class="stat-card"><span class="s-ic bg-cobalt">📄</span><div><b><span data-count="9">0</span></b><span>Live proposals</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-brass">💵</span><div><b>$<span data-count="2.1">0</span>M</b><span>Pipeline value</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-teal">🏆</span><div><b><span data-count="61">0</span>%</b><span>Win rate</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-violet">⏱️</span><div><b><span data-count="17">0</span>d</b><span>Median decision time</span></div></div>
+    </div>
+    <div class="dash-panel">
+      <h2>Proposal pipeline <a href="404dash.html" class="btn btn-grad">Draft proposal</a></h2>
+      <div class="table-scroll">
+      <table class="dash-table">
+        <thead><tr><th>Ref</th><th>Prospect</th><th>Practice</th><th>Owner</th><th>Value</th><th>Stage</th></tr></thead>
+        <tbody>
+          <tr><td>PRP-118</td><td>Helix Biotech</td><td>Turnaround</td><td>M. Hale</td><td>$260k</td><td><span class="pill warn">AWAITING SIGN-OFF</span></td></tr>
+          <tr><td>PRP-117</td><td>Sable Foods</td><td>Operating Model</td><td>I. Sato</td><td>$185k</td><td><span class="pill info">WITH CLIENT</span></td></tr>
+          <tr><td>PRP-115</td><td>Cobalt Rail</td><td>Digital</td><td>A. Diallo</td><td>$340k</td><td><span class="pill info">WITH CLIENT</span></td></tr>
+          <tr><td>PRP-114</td><td>Union Pharma</td><td>Market Entry</td><td>T. Ferreira</td><td>$220k</td><td><span class="pill ok">SCOPING</span></td></tr>
+          <tr><td>PRP-112</td><td>Marlow Group</td><td>M&amp;A Advisory</td><td>T. Ferreira</td><td>$505k</td><td><span class="pill ok">SCOPING</span></td></tr>
+          <tr><td>PRP-109</td><td>Aster Utilities</td><td>Growth Strategy</td><td>M. Hale</td><td>$150k</td><td><span class="pill bad">DECLINED</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="dash-view" data-panel="settings" hidden>
+    <div class="dash-cols">
+      <div class="dash-panel">
+        <h2>Firm profile</h2>
+        <div class="form-row">
+          <div class="form-field"><label for="afName">Firm name</label><input id="afName" type="text" value="STACKLY Strategy Consulting"><span class="field-msg"></span></div>
+          <div class="form-field"><label for="afLead">Managing partner</label><input id="afLead" type="text" value="Marcus Hale"><span class="field-msg"></span></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label for="afMail">Desk email</label><input id="afMail" type="email" value="hello@stackly.consulting"><span class="field-msg"></span></div>
+          <div class="form-field"><label for="afPhone">Desk phone</label><input id="afPhone" type="tel" value="1234567890" maxlength="10" inputmode="numeric"><span class="field-msg"></span></div>
+        </div>
+        <div class="form-field"><label for="afAddr">Head office</label><input id="afAddr" type="text" value="Level 21, 88 Collins Street, Melbourne VIC 3000"><span class="field-msg"></span></div>
+        <a href="404dash.html" class="btn btn-grad" style="width:100%;justify-content:center;">Save changes <span class="arr">→</span></a>
+      </div>
+      <div class="dash-panel">
+        <h2>Alerts &amp; approvals</h2>
+        <label class="toggle-row"><span><b>At-risk engagements</b><small>Alert when a phase slips</small></span><input type="checkbox" checked><i></i></label>
+        <label class="toggle-row"><span><b>Proposal decisions</b><small>When a prospect responds</small></span><input type="checkbox" checked><i></i></label>
+        <label class="toggle-row"><span><b>Invoice approvals</b><small>Require partner sign-off above $50k</small></span><input type="checkbox" checked><i></i></label>
+        <label class="toggle-row"><span><b>Utilisation warnings</b><small>When a consultant passes 90%</small></span><input type="checkbox"><i></i></label>
+        <label class="toggle-row"><span><b>Weekly firm digest</b><small>Monday summary across all accounts</small></span><input type="checkbox" checked><i></i></label>
+        <h2 style="margin-top:24px;">Access</h2>
+        <a href="404dash.html" class="btn btn-ghost" style="width:100%;justify-content:center;color:var(--forest);">Manage team permissions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SUPPORT ============ -->
+  <section class="dash-view" data-panel="support" hidden>
+    <div class="dash-cols">
+      <div class="dash-panel">
+        <h2>Internal support</h2>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-cobalt">🛠️</span><div><h3>Workspace &amp; IT desk</h3><p>ext. 214 · Mon–Fri, 8:00–19:00</p></div></div>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-violet">📊</span><div><h3>Data &amp; reporting team</h3><p>data@stackly.consulting</p></div></div>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-brass">⚖️</span><div><h3>Contracts &amp; legal</h3><p>For scope changes and outcome clauses</p></div></div>
+        <div class="info-card"><span class="i-ic bg-teal">📘</span><div><h3>Admin handbook</h3><p>Engagement setup, billing rules, approvals</p></div></div>
+        <a href="404dash.html" class="btn btn-grad" style="width:100%;justify-content:center;margin-top:16px;">Raise an internal ticket <span class="arr">→</span></a>
+      </div>
+      <div class="dash-panel">
+        <h2>Common questions</h2>
+        <div class="faq-list">
+          <details class="faq"><summary>How do I open a new engagement record?<span class="pl">＋</span></summary><div class="faq-body">Engagements → + New Engagement. A record needs a signed proposal reference, a lead partner and an agreed baseline metric before it can move to Diagnose.</div></details>
+          <details class="faq"><summary>Who approves outcome-linked invoices?<span class="pl">＋</span></summary><div class="faq-body">Any invoice with an outcome tranche needs the lead partner plus one other partner. Approvals above $50k route to the managing partner automatically.</div></details>
+          <details class="faq"><summary>How is utilisation calculated?<span class="pl">＋</span></summary><div class="faq-body">Billable hours divided by available hours over a rolling 8-week window, excluding approved leave and internal investment time.</div></details>
+          <details class="faq"><summary>Can I grant a client extra workspace seats?<span class="pl">＋</span></summary><div class="faq-body">Yes — Settings → Manage team permissions. Named contacts on the contract can be provisioned within one business day.</div></details>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="js/script.js"></script>
+</body>
+</html>

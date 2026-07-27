@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — STACKLY Business Strategy Consulting</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-brand">
+    <div class="hero-bg" style="background-image:url('assets/img/hero-auth.webp')"></div>
+    <a href="index.html" class="logo"><span class="mark">◆</span>Stack<span class="tail">ly</span></a>
+    <h2>Welcome back to the strategy room.</h2>
+    <p>Sign in to review engagement progress, value dashboards, and your partner's latest briefings.</p>
+    <ul>
+      <li>Live engagement &amp; milestone tracking</li>
+      <li>Weekly value dashboards</li>
+      <li>Secure document &amp; deliverable vault</li>
+    </ul>
+  </div>
+
+  <div class="auth-form-side">
+    <form id="loginForm" class="auth-card" novalidate>
+      <a href="index.html" class="back-link">← Back to Home</a>
+      <h1>Login</h1>
+      <p>Choose your role, then sign in to the right workspace.</p>
+
+      <div class="auth-switch">
+        <button type="button" class="on">Login</button>
+        <a href="signup.html">Sign Up</a>
+      </div>
+
+      <div class="role-pick">
+        <input type="radio" name="role" value="client" id="roleClient" checked>
+        <label for="roleClient"><span class="r-ic">💼</span>Client<small>Track your engagement</small></label>
+        <input type="radio" name="role" value="admin" id="roleAdmin">
+        <label for="roleAdmin"><span class="r-ic">🧑‍💼</span>Admin<small>Manage the firm</small></label>
+      </div>
+      <span class="field-msg role-msg"></span>
+
+      <div class="form-field">
+        <label for="lEmail">Work Email</label>
+        <input id="lEmail" type="email" placeholder="you@company.com" data-validate="email" autocomplete="email">
+        <span class="field-msg"></span>
+      </div>
+      <div class="form-field">
+        <label for="lPass">Password</label>
+        <div class="pass-wrap">
+          <input id="lPass" type="password" placeholder="••••••••" data-validate="loginpass" autocomplete="current-password">
+          <button type="button" class="toggle-pass" aria-label="Show password">👁</button>
+        </div>
+        <span class="field-msg"></span>
+      </div>
+
+      <div class="auth-meta">
+        <label style="display:flex;gap:8px;align-items:center;cursor:pointer;"><input type="checkbox" style="accent-color:var(--em);width:16px;height:16px;"> Keep me signed in</label>
+        <a href="404.html">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn btn-grad">Login to Workspace <span class="arr">→</span></button>
+      <span class="form-status nl-msg" role="status" aria-live="polite"></span>
+      <div class="auth-foot">New to STACKLY? <a href="signup.html">Create an account</a></div>
+    </form>
+  </div>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>

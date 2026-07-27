@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Dashboard — STACKLY</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dash-body">
+<aside class="dash-side">
+  <button class="side-close" aria-label="Close menu">✕</button>
+  <a href="client-dashboard.html" class="logo"><span class="mark">◆</span>Stack<span class="tail">ly</span></a>
+
+  <div class="side-id">
+    <span class="side-avatar">PR</span>
+    <div class="side-id-text">
+      <small>Welcome back</small>
+      <b>Priya Raghavan</b>
+      <span class="side-role">Client workspace</span>
+    </div>
+  </div>
+  <span class="side-mail" title="priya.raghavan@meridianretail.com">priya.raghavan@meridianretail.com</span>
+
+  <nav class="dash-nav">
+    <a href="#overview" data-view="overview" class="active">📊 My Engagement</a>
+    <a href="#milestones" data-view="milestones">🎯 Milestones</a>
+    <a href="#deliverables" data-view="deliverables">📄 Deliverables</a>
+    <a href="#bookings" data-view="bookings">🗓️ Bookings</a>
+    <a href="#messages" data-view="messages">💬 Messages</a>
+    <a href="#invoices" data-view="invoices">🧾 Invoices</a>
+    <a href="#settings" data-view="settings">⚙️ Settings</a>
+  </nav>
+
+  <div class="side-bottom">
+    <nav class="dash-nav">
+      <a href="#support" data-view="support">🛟 Support</a>
+      <a href="login.html" class="logout">↩ Logout</a>
+    </nav>
+  </div>
+</aside>
+
+<main class="dash-main">
+  <div class="dash-topbar">
+    <div class="dash-topbar-left">
+      <button class="icon-btn dash-menu-toggle" aria-label="Toggle sidebar">☰</button>
+      <h1 data-title>Welcome back, <span>Priya</span> — Meridian Retail Group</h1>
+    </div>
+    <div class="dash-user">
+      <button class="icon-btn" onclick="location.href='404dash.html'" aria-label="Notifications">🔔</button>
+      <button class="icon-btn" onclick="location.href='404dash.html'" aria-label="Messages">💬</button>
+      <span class="avatar">PR</span>
+    </div>
+  </div>
+
+  <!-- greeting block (mobile only) -->
+  <div class="dash-welcome">
+    <b>Welcome back, Priya</b>
+    <span>Meridian Retail Group · Growth Strategy engagement</span>
+  </div>
+
+  <!-- ============ MY ENGAGEMENT ============ -->
+  <section class="dash-view" data-panel="overview">
+    <div class="stat-grid">
+      <div class="stat-card"><span class="s-ic bg-cobalt">📈</span><div><b>+<span data-count="38">0</span>%</b><span>Revenue vs baseline</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-violet">🎯</span><div><b><span data-count="9">0</span>/12</b><span>Milestones complete</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-brass">📄</span><div><b><span data-count="14">0</span></b><span>Deliverables in vault</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-teal">🗓️</span><div><b><span data-count="3">0</span></b><span>Sessions this month</span></div></div>
+    </div>
+
+    <div class="dash-cols">
+      <div class="dash-panel">
+        <h2>Engagement roadmap — Growth Strategy <span class="pill ok">PHASE 3 · DEPLOY</span></h2>
+        <div class="bar-row"><b>DIAGNOSE</b><div class="bar-track"><div class="bar-fill bg-teal" data-w="100"></div></div><span>100%</span></div>
+        <div class="bar-row"><b>DESIGN</b><div class="bar-track"><div class="bar-fill bg-cobalt" data-w="100"></div></div><span>100%</span></div>
+        <div class="bar-row"><b>DEPLOY</b><div class="bar-track"><div class="bar-fill bg-violet" data-w="64"></div></div><span>64%</span></div>
+        <div class="bar-row"><b>COMPOUND</b><div class="bar-track"><div class="bar-fill bg-brass" data-w="12"></div></div><span>12%</span></div>
+        <h2 style="margin-top:26px;">Upcoming milestones</h2>
+        <div class="table-scroll">
+        <table class="dash-table">
+          <thead><tr><th>Milestone</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Pricing pilot — Region B</td><td>STACKLY + Sales</td><td>Aug 04</td><td><span class="pill ok">ON TRACK</span></td></tr>
+            <tr><td>Channel partner shortlist</td><td>I. Sato</td><td>Aug 11</td><td><span class="pill info">IN REVIEW</span></td></tr>
+            <tr><td>Q3 value review board pack</td><td>M. Hale</td><td>Aug 18</td><td><span class="pill warn">NEEDS INPUT</span></td></tr>
+            <tr><td>Loyalty economics model v2</td><td>STACKLY Data</td><td>Aug 25</td><td><span class="pill ok">ON TRACK</span></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="dash-panel">
+        <h2>Recent deliverables</h2>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-cobalt">📊</span><div><h3>Weekly value dashboard — W30</h3><p>Added 2 days ago · PDF</p></div></div>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-violet">📄</span><div><h3>Pricing playbook v1.3</h3><p>Added 5 days ago · DOCX</p></div></div>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-brass">🧮</span><div><h3>Channel economics model</h3><p>Added last week · XLSX</p></div></div>
+        <h2 style="margin-top:24px;">Next session</h2>
+        <div class="info-card"><span class="i-ic bg-teal">🗓️</span><div><h3>Weekly value review</h3><p>Mon 9:00 AM · with Marcus Hale</p></div></div>
+        <a href="404dash.html" class="btn btn-grad" style="width:100%;justify-content:center;margin-top:16px;">Book Another Session <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MILESTONES ============ -->
+  <section class="dash-view" data-panel="milestones" hidden>
+    <div class="stat-grid">
+      <div class="stat-card"><span class="s-ic bg-teal">✅</span><div><b><span data-count="9">0</span></b><span>Completed</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-cobalt">🚧</span><div><b><span data-count="2">0</span></b><span>In progress</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-brass">⏳</span><div><b><span data-count="1">0</span></b><span>Awaiting your input</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-violet">📅</span><div><b><span data-count="11">0</span>mo</b><span>To measured P&amp;L impact</span></div></div>
+    </div>
+    <div class="dash-panel">
+      <h2>All milestones — Growth Strategy <a href="404dash.html" class="btn btn-ghost" style="color:var(--forest);">Export plan</a></h2>
+      <div class="table-scroll">
+      <table class="dash-table">
+        <thead><tr><th>#</th><th>Milestone</th><th>Phase</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Baseline &amp; metric agreement</td><td>Diagnose</td><td>M. Hale</td><td>Feb 12</td><td><span class="pill ok">COMPLETE</span></td></tr>
+          <tr><td>02</td><td>Demand &amp; segment analysis</td><td>Diagnose</td><td>STACKLY Data</td><td>Mar 03</td><td><span class="pill ok">COMPLETE</span></td></tr>
+          <tr><td>03</td><td>Pricing power diagnostic</td><td>Diagnose</td><td>I. Sato</td><td>Mar 24</td><td><span class="pill ok">COMPLETE</span></td></tr>
+          <tr><td>04</td><td>Growth roadmap sign-off</td><td>Design</td><td>Board</td><td>Apr 14</td><td><span class="pill ok">COMPLETE</span></td></tr>
+          <tr><td>05</td><td>Channel economics model v1</td><td>Design</td><td>STACKLY Data</td><td>May 05</td><td><span class="pill ok">COMPLETE</span></td></tr>
+          <tr><td>06</td><td>Operating cadence rollout</td><td>Design</td><td>M. Hale</td><td>May 26</td><td><span class="pill ok">COMPLETE</span></td></tr>
+          <tr><td>07</td><td>Pricing pilot — Region A</td><td>Deploy</td><td>Sales</td><td>Jun 16</td><td><span class="pill ok">COMPLETE</span></td></tr>
+          <tr><td>08</td><td>Frontline enablement program</td><td>Deploy</td><td>I. Sato</td><td>Jul 07</td><td><span class="pill ok">COMPLETE</span></td></tr>
+          <tr><td>09</td><td>Value tracking dashboard live</td><td>Deploy</td><td>STACKLY Data</td><td>Jul 21</td><td><span class="pill ok">COMPLETE</span></td></tr>
+          <tr><td>10</td><td>Pricing pilot — Region B</td><td>Deploy</td><td>STACKLY + Sales</td><td>Aug 04</td><td><span class="pill ok">ON TRACK</span></td></tr>
+          <tr><td>11</td><td>Channel partner shortlist</td><td>Deploy</td><td>I. Sato</td><td>Aug 11</td><td><span class="pill info">IN REVIEW</span></td></tr>
+          <tr><td>12</td><td>Q3 value review board pack</td><td>Compound</td><td>M. Hale</td><td>Aug 18</td><td><span class="pill warn">NEEDS INPUT</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DELIVERABLES ============ -->
+  <section class="dash-view" data-panel="deliverables" hidden>
+    <div class="dash-panel">
+      <h2>Document vault — 14 files <a href="404dash.html" class="btn btn-grad">Upload a file</a></h2>
+      <div class="doc-grid">
+        <div class="info-card"><span class="i-ic bg-cobalt">📊</span><div><h3>Weekly value dashboard — W30</h3><p>PDF · 2.4 MB · added 2 days ago</p></div></div>
+        <div class="info-card"><span class="i-ic bg-violet">📄</span><div><h3>Pricing playbook v1.3</h3><p>DOCX · 1.1 MB · added 5 days ago</p></div></div>
+        <div class="info-card"><span class="i-ic bg-brass">🧮</span><div><h3>Channel economics model</h3><p>XLSX · 3.8 MB · added last week</p></div></div>
+        <div class="info-card"><span class="i-ic bg-teal">📑</span><div><h3>Q2 value review board pack</h3><p>PDF · 6.2 MB · added Jul 02</p></div></div>
+        <div class="info-card"><span class="i-ic bg-rose">🗺️</span><div><h3>36-month growth roadmap</h3><p>PDF · 4.7 MB · added Apr 14</p></div></div>
+        <div class="info-card"><span class="i-ic bg-cobalt">📈</span><div><h3>Demand &amp; segment analysis</h3><p>XLSX · 5.1 MB · added Mar 03</p></div></div>
+        <div class="info-card"><span class="i-ic bg-violet">📝</span><div><h3>Pricing diagnostic memo</h3><p>PDF · 900 KB · added Mar 24</p></div></div>
+        <div class="info-card"><span class="i-ic bg-brass">📋</span><div><h3>Operating cadence guide</h3><p>DOCX · 780 KB · added May 26</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOOKINGS ============ -->
+  <section class="dash-view" data-panel="bookings" hidden>
+    <div class="dash-cols">
+      <div class="dash-panel">
+        <h2>Upcoming sessions <a href="404dash.html" class="btn btn-grad">Book a session</a></h2>
+        <div class="table-scroll">
+        <table class="dash-table">
+          <thead><tr><th>Date</th><th>Session</th><th>Lead</th><th>Format</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Mon, Aug 04</td><td>Weekly value review</td><td>M. Hale</td><td>Video · 45 min</td><td><span class="pill ok">CONFIRMED</span></td></tr>
+            <tr><td>Thu, Aug 07</td><td>Pricing pilot readout</td><td>I. Sato</td><td>On-site · 90 min</td><td><span class="pill ok">CONFIRMED</span></td></tr>
+            <tr><td>Mon, Aug 11</td><td>Weekly value review</td><td>M. Hale</td><td>Video · 45 min</td><td><span class="pill info">PENDING</span></td></tr>
+            <tr><td>Tue, Aug 19</td><td>Q3 board pack walkthrough</td><td>M. Hale</td><td>On-site · 2 hrs</td><td><span class="pill info">PENDING</span></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="dash-panel">
+        <h2>Your partner</h2>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-cobalt">👤</span><div><h3>Marcus Hale</h3><p>Managing Partner · Growth</p></div></div>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-violet">👤</span><div><h3>Ingrid Sato</h3><p>Partner · Market Entry</p></div></div>
+        <h2 style="margin-top:24px;">Session credits</h2>
+        <div class="bar-row"><b>USED</b><div class="bar-track"><div class="bar-fill bg-cobalt" data-w="68"></div></div><span>17</span></div>
+        <div class="bar-row"><b>REMAIN</b><div class="bar-track"><div class="bar-fill bg-teal" data-w="32"></div></div><span>8</span></div>
+        <a href="404dash.html" class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:14px;color:var(--forest);">Request more credits</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MESSAGES ============ -->
+  <section class="dash-view" data-panel="messages" hidden>
+    <div class="dash-panel">
+      <h2>Message threads <a href="404dash.html" class="btn btn-grad">New message</a></h2>
+      <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-cobalt">💬</span><div><h3>Marcus Hale — Pricing pilot results</h3><p>“Region A landed at +6.4% margin, ahead of the model…” · 2 hrs ago</p></div><span class="pill warn">2 NEW</span></div>
+      <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-violet">💬</span><div><h3>Ingrid Sato — Partner shortlist</h3><p>“Four candidates cleared commercial screening…” · yesterday</p></div><span class="pill warn">1 NEW</span></div>
+      <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-brass">💬</span><div><h3>STACKLY Data — Dashboard refresh</h3><p>“W30 figures are live in your vault.” · 2 days ago</p></div><span class="pill ok">READ</span></div>
+      <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-teal">💬</span><div><h3>Engagement desk — Q3 board pack</h3><p>“We need your commentary by Friday to lock the pack.” · 4 days ago</p></div><span class="pill ok">READ</span></div>
+      <div class="info-card"><span class="i-ic bg-rose">💬</span><div><h3>Marcus Hale — Cadence change</h3><p>“Moving the weekly to 9:00 from next Monday.” · last week</p></div><span class="pill ok">READ</span></div>
+    </div>
+  </section>
+
+  <!-- ============ INVOICES ============ -->
+  <section class="dash-view" data-panel="invoices" hidden>
+    <div class="stat-grid">
+      <div class="stat-card"><span class="s-ic bg-cobalt">🧾</span><div><b>$<span data-count="95">0</span>k</b><span>Engagement value</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-teal">✅</span><div><b>$<span data-count="66.5">0</span>k</b><span>Settled to date</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-brass">⏳</span><div><b>$<span data-count="19">0</span>k</b><span>Outstanding</span></div></div>
+      <div class="stat-card"><span class="s-ic bg-violet">🎯</span><div><b>$<span data-count="9.5">0</span>k</b><span>Outcome-linked</span></div></div>
+    </div>
+    <div class="dash-panel">
+      <h2>Invoice history <a href="404dash.html" class="btn btn-ghost" style="color:var(--forest);">Download all</a></h2>
+      <div class="table-scroll">
+      <table class="dash-table">
+        <thead><tr><th>Invoice</th><th>Issued</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>FY26-071</td><td>Feb 14</td><td>Engagement mobilisation</td><td>$28,500</td><td><span class="pill ok">PAID</span></td></tr>
+          <tr><td>FY26-088</td><td>Apr 16</td><td>Design phase — milestone 04–06</td><td>$23,750</td><td><span class="pill ok">PAID</span></td></tr>
+          <tr><td>FY26-102</td><td>Jun 18</td><td>Deploy phase — milestone 07–09</td><td>$14,250</td><td><span class="pill ok">PAID</span></td></tr>
+          <tr><td>FY26-114</td><td>Jul 22</td><td>Deploy phase — milestone 10–11</td><td>$19,000</td><td><span class="pill warn">DUE AUG 21</span></td></tr>
+          <tr><td>FY26-120</td><td>—</td><td>Outcome-linked tranche</td><td>$9,500</td><td><span class="pill info">ON COMPLETION</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="dash-view" data-panel="settings" hidden>
+    <div class="dash-cols">
+      <div class="dash-panel">
+        <h2>Account details</h2>
+        <div class="form-row">
+          <div class="form-field"><label for="stName">Full name</label><input id="stName" type="text" value="Priya Raghavan"><span class="field-msg"></span></div>
+          <div class="form-field"><label for="stRole">Job title</label><input id="stRole" type="text" value="Chief Executive Officer"><span class="field-msg"></span></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label for="stMail">Work email</label><input id="stMail" type="email" value="priya.raghavan@meridianretail.com"><span class="field-msg"></span></div>
+          <div class="form-field"><label for="stPhone">Phone</label><input id="stPhone" type="tel" value="9876543210" maxlength="10" inputmode="numeric"><span class="field-msg"></span></div>
+        </div>
+        <div class="form-field"><label for="stCo">Company</label><input id="stCo" type="text" value="Meridian Retail Group"><span class="field-msg"></span></div>
+        <a href="404dash.html" class="btn btn-grad" style="width:100%;justify-content:center;">Save changes <span class="arr">→</span></a>
+      </div>
+      <div class="dash-panel">
+        <h2>Notifications</h2>
+        <label class="toggle-row"><span><b>Milestone updates</b><small>When a milestone changes status</small></span><input type="checkbox" checked><i></i></label>
+        <label class="toggle-row"><span><b>New deliverables</b><small>When a file lands in your vault</small></span><input type="checkbox" checked><i></i></label>
+        <label class="toggle-row"><span><b>Session reminders</b><small>24 hours before each session</small></span><input type="checkbox" checked><i></i></label>
+        <label class="toggle-row"><span><b>Invoice alerts</b><small>When an invoice is issued or due</small></span><input type="checkbox"><i></i></label>
+        <label class="toggle-row"><span><b>The Monday Briefing</b><small>Weekly strategy newsletter</small></span><input type="checkbox" checked><i></i></label>
+        <h2 style="margin-top:24px;">Security</h2>
+        <a href="404dash.html" class="btn btn-ghost" style="width:100%;justify-content:center;color:var(--forest);">Change password</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SUPPORT ============ -->
+  <section class="dash-view" data-panel="support" hidden>
+    <div class="dash-cols">
+      <div class="dash-panel">
+        <h2>Get help</h2>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-cobalt">📞</span><div><h3>Call the engagement desk</h3><p>(+01) 234-567-89 · Mon–Fri, 9:00–18:00</p></div></div>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-violet">✉️</span><div><h3>Email your partner</h3><p>marcus.hale@stackly.consulting</p></div></div>
+        <div class="info-card" style="margin-bottom:12px;"><span class="i-ic bg-brass">🛟</span><div><h3>Raise a support ticket</h3><p>Typical first response — under 3 hours</p></div></div>
+        <div class="info-card"><span class="i-ic bg-teal">📘</span><div><h3>Workspace guide</h3><p>How to use the vault, cadence and value tracking</p></div></div>
+        <a href="404dash.html" class="btn btn-grad" style="width:100%;justify-content:center;margin-top:16px;">Open a ticket <span class="arr">→</span></a>
+      </div>
+      <div class="dash-panel">
+        <h2>Common questions</h2>
+        <div class="faq-list">
+          <details class="faq"><summary>How often is the value dashboard refreshed?<span class="pl">＋</span></summary><div class="faq-body">Every Monday by 07:00 local time, using the previous week's closed figures from your systems.</div></details>
+          <details class="faq"><summary>Who can I add to this workspace?<span class="pl">＋</span></summary><div class="faq-body">Any named contact on the engagement contract. Ask your partner to invite them — access is provisioned within one business day.</div></details>
+          <details class="faq"><summary>How long are deliverables retained?<span class="pl">＋</span></summary><div class="faq-body">For the duration of the engagement plus 24 months. You can export the full vault at any point.</div></details>
+          <details class="faq"><summary>Can I reschedule a session?<span class="pl">＋</span></summary><div class="faq-body">Yes — reschedule from Bookings up to 12 hours before the session, or message your partner directly.</div></details>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -249,13 +249,44 @@
     const r = $('input[name="role"]:checked', form);
     return r ? r.value : null;
   }
-  /* ---------- Signed-in profile (captured at signup / login) ---------- */
+  /* ---------- Accounts + session ----------
+     Front-end demo store: signup registers an account, login verifies it.
+     There is no backend here, so treat none of this as real security. */
+  const ACCOUNTS_KEY = 'stackly.accounts';
   const PROFILE_KEY = 'stackly.user';
+  const SIGNUP_FLAG = 'stackly.justSignedUp';
+
+  function readAccounts() {
+    try {
+      const list = JSON.parse(localStorage.getItem(ACCOUNTS_KEY) || '[]');
+      return Array.isArray(list) ? list : [];
+    } catch (err) { return []; }
+  }
+  function writeAccounts(list) {
+    try { localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(list)); return true; } catch (err) { return false; }
+  }
+  const normMail = m => String(m || '').trim().toLowerCase();
+  function findAccount(mail) {
+    const key = normMail(mail);
+    return readAccounts().filter(a => normMail(a.email) === key)[0] || null;
+  }
+  /* passwords are never kept in the clear — a demo digest, not real hashing */
+  function digest(pass) {
+    const s = String(pass);
+    let h = 5381;
+    for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+    return 'v1.' + h.toString(36) + '.' + s.length;
+  }
+
+  /* ---------- Signed-in session (written by login only) ---------- */
   function readProfile() {
     try { return JSON.parse(localStorage.getItem(PROFILE_KEY) || 'null'); } catch (err) { return null; }
   }
   function writeProfile(p) {
     try { localStorage.setItem(PROFILE_KEY, JSON.stringify(p)); } catch (err) { /* storage blocked */ }
+  }
+  function clearProfile() {
+    try { localStorage.removeItem(PROFILE_KEY); } catch (err) { /* storage blocked */ }
   }
   function titleCase(s) {
     return String(s || '').replace(/[._\-]+/g, ' ').replace(/\s+/g, ' ').trim()
@@ -268,14 +299,35 @@
     return (i || 'ST').toUpperCase();
   }
 
+  /* success notes hold for 5s then fade out; errors stay until they're fixed */
+  const STATUS_HOLD = 5000, STATUS_FADE = 350;
+  function stopHold(el) {
+    if (!el) return;
+    clearTimeout(el._holdTimer);
+    clearTimeout(el._fadeTimer);
+    el.classList.remove('is-fading');
+  }
+  function holdThenClear(el) {
+    stopHold(el);
+    el._holdTimer = setTimeout(() => {
+      el.classList.add('is-fading');
+      el._fadeTimer = setTimeout(() => {
+        el.textContent = '';
+        el.className = 'form-status nl-msg';
+      }, STATUS_FADE);
+    }, STATUS_HOLD);
+  }
+
   function authFlow(form, opts) {
     if (!form) return;
     const btn = $('button[type="submit"]', form);
     const status = $('.form-status', form);
     const setStatus = (text, cls) => {
       if (!status) return;
+      stopHold(status);
       status.textContent = text;
       status.className = 'form-status nl-msg' + (cls ? ' ' + cls : '');
+      if (cls === 'ok') holdThenClear(status);
     };
 
     /* re-check the confirm field whenever the password changes */
@@ -307,28 +359,44 @@
         return;
       }
 
-      /* remember who signed in so the dashboards can greet them */
       const val = sel => { const el = $(sel, form); return el ? el.value.trim() : ''; };
-      const email = val('[data-validate="email"]');
-      const typed = val('[data-validate="name"]');
-      const phone = val('[data-validate="phone"]');
-      const prev = readProfile();
-      const carried = prev && prev.email && prev.email.toLowerCase() === email.toLowerCase() ? prev : null;
-      writeProfile({
-        name: typed || (carried && carried.name) || nameFromEmail(email),
-        email: email,
-        phone: phone || (carried && carried.phone) || '',
-        role: chosen
+      const res = opts.submit({
+        role: chosen,
+        email: val('[data-validate="email"]'),
+        name: val('[data-validate="name"]'),
+        phone: val('[data-validate="phone"]'),
+        pass: val('[data-validate="password"]') || val('[data-validate="loginpass"]')
       });
+
+      /* the account itself was rejected — flag the offending field, stay put */
+      if (!res.ok) {
+        setStatus(res.message, 'err');
+        if (res.roleMsg) {
+          const rm = $('.role-msg', form);
+          if (rm) { rm.textContent = res.roleMsg; rm.classList.add('err'); }
+          return;
+        }
+        const bad = res.focus && $(res.focus, form);
+        if (bad) {
+          const field = bad.closest('.form-field');
+          if (field) {
+            field.classList.add('err');
+            field.classList.remove('ok');
+            const m = $('.field-msg', field);
+            if (m && res.fieldMsg) m.textContent = res.fieldMsg;
+          }
+          bad.focus();
+        }
+        return;
+      }
 
       const label = btn ? btn.innerHTML : '';
       if (btn) { btn.disabled = true; btn.textContent = opts.working; }
-      setStatus(opts.success, 'ok');
+      setStatus(res.message, 'ok');
 
       setTimeout(() => {
-        const target = chosen === 'admin' ? 'admin-dashboard.html' : 'client-dashboard.html';
         try {
-          window.location.href = target;
+          window.location.href = res.target;
         } catch (err) {
           if (btn) { btn.disabled = false; btn.innerHTML = label; }
           setStatus('Something went wrong — please try again.', 'err');
@@ -337,18 +405,95 @@
     });
   }
 
+  /* Login: the account must exist, and the password + role must match it. */
   authFlow($('#loginForm'), {
     invalid: 'Check the highlighted fields, then sign in again.',
     working: 'Signing you in…',
-    success: '✓ Credentials verified — opening your workspace…',
-    delay: 800
+    delay: 800,
+    submit(d) {
+      const acc = findAccount(d.email);
+      if (!acc) return {
+        ok: false,
+        message: 'No account found for that email — create one first.',
+        focus: '[data-validate="email"]',
+        fieldMsg: 'No account is registered with this email.'
+      };
+      if (acc.pass !== digest(d.pass)) return {
+        ok: false,
+        message: 'That password does not match our records.',
+        focus: '[data-validate="loginpass"]',
+        fieldMsg: 'Incorrect password.'
+      };
+      if (acc.role !== d.role) return {
+        ok: false,
+        message: 'This email is registered as ' + (acc.role === 'admin' ? 'an Admin' : 'a Client') + ' — pick that role to sign in.',
+        roleMsg: 'Sign in as ' + (acc.role === 'admin' ? 'Admin' : 'Client') + ' for this account.'
+      };
+      /* verified — open the session the dashboards read */
+      writeProfile({ name: acc.name, email: acc.email, phone: acc.phone || '', role: acc.role, at: Date.now() });
+      return {
+        ok: true,
+        message: '✓ Credentials verified — opening your workspace…',
+        target: acc.role === 'admin' ? 'admin-dashboard.html' : 'client-dashboard.html'
+      };
+    }
   });
+
+  /* Signup: registers the account and hands off to login — it never signs you in. */
   authFlow($('#signupForm'), {
     invalid: 'Check the highlighted fields to create your account.',
     working: 'Creating your account…',
-    success: '✓ Account created — setting up your workspace…',
-    delay: 900
+    delay: 900,
+    submit(d) {
+      if (findAccount(d.email)) return {
+        ok: false,
+        message: 'That email is already registered — log in instead.',
+        focus: '[data-validate="email"]',
+        fieldMsg: 'This email already has an account.'
+      };
+      const list = readAccounts();
+      list.push({
+        name: d.name || nameFromEmail(d.email),
+        email: d.email,
+        phone: d.phone || '',
+        role: d.role,
+        pass: digest(d.pass),
+        created: new Date().toISOString()
+      });
+      if (!writeAccounts(list)) return {
+        ok: false,
+        message: 'Your browser is blocking storage — enable it to create an account.'
+      };
+      clearProfile();                                   /* signing up ≠ signing in */
+      try { sessionStorage.setItem(SIGNUP_FLAG, d.email); } catch (err) { /* ignore */ }
+      return { ok: true, message: '✓ Account created — log in to open your workspace.', target: 'login.html' };
+    }
   });
+
+  /* Arriving at login straight from signup: prefill the account we just made. */
+  const loginForm = $('#loginForm');
+  if (loginForm) {
+    let justMade = null;
+    try {
+      justMade = sessionStorage.getItem(SIGNUP_FLAG);
+      sessionStorage.removeItem(SIGNUP_FLAG);
+    } catch (err) { /* ignore */ }
+    if (justMade) {
+      const mail = $('[data-validate="email"]', loginForm);
+      if (mail) mail.value = justMade;
+      const acc = findAccount(justMade);
+      const pick = acc && $('input[name="role"][value="' + acc.role + '"]', loginForm);
+      if (pick) pick.checked = true;
+      const st = $('.form-status', loginForm);
+      if (st) {
+        st.textContent = '✓ Account created — sign in to open your workspace.';
+        st.className = 'form-status nl-msg ok';
+        holdThenClear(st);
+      }
+      const pass = $('[data-validate="loginpass"]', loginForm);
+      if (pass) pass.focus();
+    }
+  }
 
   /* ---------- Contact form ---------- */
   const contactForm = $('#contactForm');
@@ -490,11 +635,18 @@
     );
   }
 
-  /* ---------- Dashboard: show the signed-in name + email ---------- */
+  /* ---------- Dashboard: gate on the session, then greet ---------- */
   const dashRoot = $('.dash-body');
   if (dashRoot) {
     const p = readProfile();
-    if (p && p.email) {
+    const needs = /admin-dashboard/i.test(location.pathname) ? 'admin' : 'client';
+    if (!p || !p.email) {
+      /* no session — the dashboards are reachable through login only */
+      location.replace('login.html');
+    } else if (p.role !== needs) {
+      /* signed in, wrong workspace — bounce to the one this account owns */
+      location.replace(p.role === 'admin' ? 'admin-dashboard.html' : 'client-dashboard.html');
+    } else {
       const first = String(p.name).trim().split(/\s+/)[0];
       const ini = initialsOf(p.name, p.email);
 
@@ -524,6 +676,9 @@
       const sp = $('#stPhone'); if (sp && p.phone) sp.value = p.phone;
     }
   }
+
+  /* ---------- Logout: end the session before leaving ---------- */
+  $$('.logout').forEach(a => a.addEventListener('click', () => clearProfile()));
 
   /* ---------- Dashboard sidebar ---------- */
   const dashToggle = $('.dash-menu-toggle'), dashSide = $('.dash-side'), sideClose = $('.side-close');

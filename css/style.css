@@ -507,7 +507,16 @@ section{padding:var(--sec-pad) 0;position:relative;}
 .auth-foot{text-align:center;margin-top:20px;font-size:.82rem;color:var(--slate);}
 .auth-foot a{color:var(--em);font-weight:700;}
 .role-msg{text-align:left;margin-bottom:4px;}
-.form-status{display:block;text-align:center;margin-top:14px;min-height:1.2em;}
+.form-status{display:block;text-align:center;margin-top:14px;min-height:1.2em;opacity:1;transition:opacity .35s var(--ease);}
+/* success notes fade out on their own after a few seconds */
+.form-status.is-fading{opacity:0;}
+/* On light panels the mint used by the dark newsletter band washes out —
+   use a deeper green/red with a tinted pill so the result is unmissable. */
+.contact-card .form-status:not(:empty),.auth-card .form-status:not(:empty){
+  padding:12px 16px;border-radius:12px;font-size:.82rem;font-weight:600;line-height:1.45;margin-top:16px;}
+.contact-card .form-status.ok,.auth-card .form-status.ok{color:#0A6B44;background:rgba(30,138,90,.13);border:1px solid rgba(30,138,90,.36);}
+.contact-card .form-status.err,.auth-card .form-status.err{color:#AE1F26;background:rgba(229,72,77,.1);border:1px solid rgba(229,72,77,.32);}
+.form-field.ok .field-msg{color:#12805B;}
 
 /* terms & conditions checkbox */
 .terms-field{margin:4px 0 20px;}
@@ -529,7 +538,7 @@ section{padding:var(--sec-pad) 0;position:relative;}
 
 /* ---------- Dashboards (light, green accents) ---------- */
 .dash-body{display:flex;min-height:100vh;background:var(--cloud);color:var(--ink);}
-.dash-side{width:262px;flex:none;background:var(--pine);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:26px 18px;position:sticky;top:0;height:100vh;height:100svh;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent;transition:margin .4s var(--ease);}
+.dash-side{width:262px;flex:none;background:var(--pine);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:26px 18px;position:sticky;top:0;height:100vh;height:100svh;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent;transition:margin .4s var(--ease);}
 .dash-side .logo{margin-bottom:20px;padding-left:8px;flex:none;}
 .side-close{display:none;position:absolute;top:16px;right:14px;width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.1);
   border:1px solid var(--glass-brd);color:#fff;font-size:.95rem;z-index:3;transition:background .3s var(--ease),transform .3s var(--ease),border-color .3s;}
@@ -559,11 +568,13 @@ section{padding:var(--sec-pad) 0;position:relative;}
 .dash-nav a.logout{color:#FFB9BD;background:rgba(229,72,77,.14);border:1px solid rgba(229,72,77,.34);margin-top:6px;}
 .dash-nav a.logout:hover{background:#E5484D;color:#fff;border-color:transparent;transform:translateX(4px);box-shadow:0 14px 26px -14px rgba(229,72,77,.9);}
 .side-bottom{margin-top:auto;border-top:1px solid var(--line);padding-top:16px;flex:none;}
-.dash-main{flex:1;padding:30px 34px;min-width:0;}
+.dash-main{flex:1;padding:30px 34px;min-width:0;max-width:100%;overflow-x:hidden;overflow-x:clip;}
 .dash-side::-webkit-scrollbar{width:6px;}
 .dash-side::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:6px;}
 .dash-topbar{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:28px;}
 .dash-topbar-left{display:flex;gap:14px;align-items:center;min-width:0;}
+/* brand in the topbar — mobile only, the sidebar carries it on desktop */
+.dash-topbar-logo{display:none;}
 /* greeting block — mobile only */
 .dash-welcome{display:none;background:var(--paper);border:1px solid var(--line-dark);border-radius:var(--r-md);padding:16px 18px;margin-bottom:20px;
   box-shadow:0 18px 36px -30px rgba(8,25,18,.35);}
@@ -741,9 +752,12 @@ body.lock-screen .page-404{height:100svh;min-height:0;padding:24px 6%;}
   .dash-menu-toggle{display:grid;place-items:center;}
   .dash-main{padding:22px 5%;}
   .stat-grid{grid-template-columns:repeat(2,1fr);}
-  /* header keeps only the hamburger + avatar; greeting drops below it */
+  /* header: logo on the left, hamburger + avatar on the right; greeting drops below it */
   .dash-topbar h1{display:none;}
-  .dash-user .icon-btn{display:none;}
+  .dash-user .icon-btn:not(.dash-menu-toggle){display:none;}
+  .dash-topbar-logo{display:flex;font-size:1.5rem;}
+  .dash-topbar-logo .mark{width:40px;height:40px;}
+  .dash-topbar-logo span.tail{margin-left:-8px;}
   .dash-welcome{display:block;}
   .doc-grid{grid-template-columns:1fr;}
 }
@@ -1058,8 +1072,24 @@ section > .wrap > *:last-child,
 .logo{flex:none;white-space:nowrap;}
 .head-in{gap:14px;}
 
-/* fluid media + no accidental horizontal scroll anywhere */
+/* ---------- No horizontal scroll, anywhere ----------
+   `clip` (with a `hidden` fallback) contains stray overflow without turning
+   these into scroll containers — which would break position:sticky. */
 html,body{max-width:100%;}
+/* body's value propagates to the viewport while html stays visible, so the
+   sticky header / sidebar / auth panel keep working. `clip` is preferred;
+   `hidden` stays as the fallback for older engines. */
+body{overflow-x:hidden;overflow-x:clip;}
+section,.foot-top,.dash-view,.dash-topbar{overflow-x:hidden;overflow-x:clip;}
+/* grid/flex children default to min-width:auto and can push a track wider
+   than its container — long words, tables and hover shifts all do it */
+.stat-grid>*,.stat-grid4>*,.svc-grid>*,.case-grid>*,.ins-grid>*,.val-grid>*,
+.team-grid>*,.price-grid>*,.proc-grid>*,.doc-grid>*,.dash-cols>*,
+.contact-grid>*,.foot-top>*,.nl-box>*,.form-row>*{min-width:0;}
+.table-scroll{max-width:100%;-webkit-overflow-scrolling:touch;}
+.dash-topbar h1{min-width:0;}
+
+/* fluid media */
 img,video,iframe,canvas,svg{max-width:100%;}
 h1,h2,h3,h4,p,li,td,th,label,summary{overflow-wrap:break-word;}
 .side-mail,.foot-contact a,.auth-foot,.form-status,.field-msg,.nl-msg,.info-tile span{overflow-wrap:anywhere;}

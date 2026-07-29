@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Client Dashboard — STACKLY</title>
 <link rel="stylesheet" href="css/style.css">
+<!-- session gate: runs before paint so a signed-out visitor never sees the workspace -->
+<script>
+(function () {
+  var p = null;
+  try { p = JSON.parse(localStorage.getItem('stackly.user') || 'null'); } catch (err) { p = null; }
+  if (!p || !p.email) location.replace('login.html');
+  else if (p.role !== 'client') location.replace('admin-dashboard.html');
+})();
+</script>
 </head>
 <body class="dash-body">
 <aside class="dash-side">
@@ -42,12 +51,13 @@
 <main class="dash-main">
   <div class="dash-topbar">
     <div class="dash-topbar-left">
-      <button class="icon-btn dash-menu-toggle" aria-label="Toggle sidebar">☰</button>
+      <a href="client-dashboard.html" class="logo dash-topbar-logo"><span class="mark">◆</span>Stack<span class="tail">ly</span></a>
       <h1 data-title>Welcome back, <span>Priya</span> — Meridian Retail Group</h1>
     </div>
     <div class="dash-user">
       <button class="icon-btn" onclick="location.href='404dash.html'" aria-label="Notifications">🔔</button>
       <button class="icon-btn" onclick="location.href='404dash.html'" aria-label="Messages">💬</button>
+      <button class="icon-btn dash-menu-toggle" aria-label="Toggle sidebar">☰</button>
       <span class="avatar">PR</span>
     </div>
   </div>
